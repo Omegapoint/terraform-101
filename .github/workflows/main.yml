@@ -15,6 +15,12 @@ env:
   TF_VAR_location: northeurope
   TF_VAR_secret_value: terraform101secret
 
+    ######## ARM_ specific naming is needed for TF authentication
+  ARM_CLIENT_ID: '0d52735b-9f94-4116-ba52-7f812490d7af'
+  ARM_TENANT_ID: '3b68c6c1-04d4-4e86-875f-e48fa80b9529'
+  ARM_SUBSCRIPTION_ID: 'd2245c54-7bbf-4a04-8b8c-e05622b29fc5'
+  ARM_USE_OIDC: true
+
 jobs:
   
   build-and-deploy:
@@ -27,12 +33,12 @@ jobs:
       - name: Checkout your repository
         uses: actions/checkout@v3
       
-      - name: "Az CLI login"
+      - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: '0d52735b-9f94-4116-ba52-7f812490d7af'
-          tenant-id: '3b68c6c1-04d4-4e86-875f-e48fa80b9529'
-          subscription-id: 'd2245c54-7bbf-4a04-8b8c-e05622b29fc5'
+          client-id: ${{ env.ARM_CLIENT_ID }}
+          tenant-id: ${{ env.ARM_TENANT_ID }}
+          subscription-id: ${{ env.ARM_SUBSCRIPTION_ID }}
 
       - name: Create resource group to store state
         run: az group create --name ${{ env.RESOURCE_GROUP_TFSTATE }} --location northeurope

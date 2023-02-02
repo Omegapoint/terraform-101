@@ -1,0 +1,5 @@
+az --version
+terraform --version
+
+
+az login
