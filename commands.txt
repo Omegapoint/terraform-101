@@ -5,3 +5,10 @@ terraform --version
 
 
 az login
+cd terraform-local
+*terraform fmt
+terraform init
+*terraform validate (https://developer.hashicorp.com/terraform/cli/commands/validate)
+terraform plan (https://developer.hashicorp.com/terraform/cli/commands/plan)
+terraform apply --auto-approve (om det misslyckas, kör igen...)
+*optional

@@ -1,0 +1,4 @@
+push protection på main
+ta bort onödiga kommentarer
+renskriva 
+

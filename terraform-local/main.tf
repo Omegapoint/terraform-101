@@ -5,8 +5,6 @@ terraform {
       version = "~> 3.41"
     }
   }
-
-  backend "azurerm" {}
 }
 
 provider "azurerm" {
@@ -34,25 +32,32 @@ resource "azurerm_key_vault" "key_vault" {
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false #Should be true when using in production!
-  enable_rbac_authorization   = true
-  sku_name                    = "standard"
+  # enable_rbac_authorization   = true
+  sku_name = "standard"
 
   lifecycle {
     ignore_changes = [tags]
   }
 }
 
-resource "azurerm_role_assignment" "pipeline_to_keyvault" {
-  scope                = azurerm_key_vault.key_vault.id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = data.azurerm_client_config.current.object_id
+resource "azurerm_key_vault_access_policy" "service_principal_policy" {
+  key_vault_id = azurerm_key_vault.key_vault.id
+  tenant_id    = data.azurerm_client_config.current.tenant_id
+  object_id    = data.azurerm_client_config.current.object_id
+
+  key_permissions = [
+    "Get", "List"
+  ]
+  secret_permissions = [
+    "Get", "List", "Set", "Delete", "Purge"
+  ]
 }
 
-resource "azurerm_role_assignment" "op_users_to_keyvault" {
-  scope                = azurerm_key_vault.key_vault.id
-  role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab"
-}
+# resource "azurerm_role_assignment" "op_users_to_keyvault" {
+#   scope                = azurerm_key_vault.key_vault.id
+#   role_definition_name = "Key Vault Secrets Officer"
+#   principal_id         = data.azurerm_client_config.current.object_id
+# }
 
 resource "azurerm_key_vault_secret" "secret" {
   name         = "SuperSecret"
