@@ -1,3 +1,5 @@
+rollen tar tid att appliceras oc kan orsaka flödet att faila
+------------
 az --version
 terraform --version
 
