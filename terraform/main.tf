@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "~> 3.41"
     }
   }
@@ -10,14 +10,17 @@ terraform {
 }
 
 provider "azurerm" {
+  features {
+
+  }
 }
 
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "resource_group" {
-  name = "rg-${var.project}"
+  name     = "rg-${var.project}"
   location = var.location
-  
+
   lifecycle {
     ignore_changes = [tags]
   }
@@ -30,10 +33,10 @@ resource "azurerm_key_vault" "key_vault" {
   enabled_for_disk_encryption = true
   tenant_id                   = data.azurerm_client_config.current.tenant_id
   soft_delete_retention_days  = 7
-  purge_protection_enabled    = false       #Should be true when using in production!
+  purge_protection_enabled    = false #Should be true when using in production!
   enable_rbac_authorization   = true
-  sku_name = "standard"
-  
+  sku_name                    = "standard"
+
   lifecycle {
     ignore_changes = [tags]
   }
