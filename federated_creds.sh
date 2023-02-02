@@ -1,16 +1,15 @@
 #!/bin/bash
 set -eo pipefail
 
-TENANT_ID="30f52344-4663-4c2e-bab3-61bf24ebbed8"
-
 AZURE_AD_APPLICATION_NAME="$1"
 SUBSCRIPTION_ID="$2"
 ORG_NAME="$3"
 REPOSITORY_NAME="$4"
+TENANT_ID="$5"
 
-if [[ -z $AZURE_AD_APPLICATION_NAME || -z $SUBSCRIPTION_ID || -z $ORG_NAME || -z $REPOSITORY_NAME ]]
+if [[ -z $AZURE_AD_APPLICATION_NAME || -z $SUBSCRIPTION_ID || -z $ORG_NAME || -z $REPOSITORY_NAME || -z $TENANT_ID]]
 then
-	echo "Usage: federated_creds.sh <AZURE_AD_APPLICATION_NAME> <SUBSCRIPTION_ID> <GITHUB_ORG_NAME> <GITHUB_REPOSITORY_NAME>"
+	echo "Usage: federated_creds.sh <AZURE_AD_APPLICATION_NAME> <SUBSCRIPTION_ID> <GITHUB_ORG_NAME> <GITHUB_REPOSITORY_NAME> <TENANT_ID>"
 	echo ""
 	echo "Example: federated_creds.sh myapp 00000000-0000-0000-0000-000000000000 hm-group template-dotnet-api-function-cosmos"
 	exit 1

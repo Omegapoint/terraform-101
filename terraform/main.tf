@@ -2,22 +2,20 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = "~> 3.8"
+      version = "~> 3.41"
     }
   }
 
   backend "azurerm" {}
-
 }
 
 provider "azurerm" {
-  use_oidc = true
 }
 
 data "azurerm_client_config" "current" {}
 
 resource "azurerm_resource_group" "resource_group" {
-  name = "${var.project}-rg"
+  name = "rg-${var.project}"
   location = var.location
   
   lifecycle {
@@ -26,7 +24,7 @@ resource "azurerm_resource_group" "resource_group" {
 }
 
 resource "azurerm_key_vault" "key_vault" {
-  name                        = "${var.project}-vault"
+  name                        = "kv-${var.project}"
   location                    = var.location
   resource_group_name         = azurerm_resource_group.resource_group.name
   enabled_for_disk_encryption = true
@@ -45,6 +43,12 @@ resource "azurerm_role_assignment" "pipeline_to_keyvault" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
   principal_id         = data.azurerm_client_config.current.object_id
+}
+
+resource "azurerm_role_assignment" "op_users_to_keyvault" {
+  scope                = azurerm_key_vault.key_vault.id
+  role_definition_name = "Key Vault Secrets Officer"
+  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab"
 }
 
 resource "azurerm_key_vault_secret" "secret" {

@@ -7,13 +7,14 @@ on:
   workflow_dispatch:
 
 env:
-  RESOURCE_GROUP_TFSTATE:
-  STORAGE_ACCOUNT_TFSTATE:
-  CONTAINER_TFSTATE:
-  BLOB_TFSTATE:
-  TF_VAR_PROJECT:
-  TF_VAR_LOCATION:
-  TF_VAR_SECRET:
+  ARM_USE_OICD: true
+  RESOURCE_GROUP_TFSTATE: terraform101
+  STORAGE_ACCOUNT_TFSTATE: terraform101
+  CONTAINER_TFSTATE: terraform101
+  BLOB_TFSTATE: terraform101
+  TF_VAR_project: terraform101
+  TF_VAR_location: northeurope
+  TF_VAR_secret_value: terraform101secret
 
 jobs:
   build-and-deploy:

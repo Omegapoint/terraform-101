@@ -8,7 +8,7 @@ variable "location" {
     description = "Region to deploy to"
 }
 
-variable "secret" {
+variable "secret_value" {
     type = string
     sensitive = true
     description = "Your super secret value"
