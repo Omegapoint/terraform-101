@@ -7,7 +7,6 @@ on:
   workflow_dispatch:
 
 env:
-  ARM_USE_OICD: true
   RESOURCE_GROUP_TFSTATE: terraform101
   STORAGE_ACCOUNT_TFSTATE: terraform101
   CONTAINER_TFSTATE: terraform101
