@@ -53,6 +53,6 @@ resource "azurerm_role_assignment" "op_users_to_keyvault" {
 
 resource "azurerm_key_vault_secret" "secret" {
   name         = "SuperSecret"
-  value        = var.secret
+  value        = var.secret_value
   key_vault_id = azurerm_key_vault.key_vault.id
 }
