@@ -1,0 +1,78 @@
+name: MAIN PIPELINE
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+env:
+  RESOURCE_GROUP_TFSTATE:
+  STORAGE_ACCOUNT_TFSTATE:
+  CONTAINER_TFSTATE:
+  BLOB_TFSTATE:
+  TF_VAR_PROJECT:
+  TF_VAR_LOCATION:
+  TF_VAR_SECRET:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # This is required for requesting the JWT
+      contents: read  # This is required for actions/checkout
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v3
+      
+      - name: "Az CLI login"
+        uses: azure/login@v1
+        with:
+          client-id: '0d52735b-9f94-4116-ba52-7f812490d7af'
+          tenant-id: '3b68c6c1-04d4-4e86-875f-e48fa80b9529'
+          subscription-id: 'd2245c54-7bbf-4a04-8b8c-e05622b29fc5'
+
+      - name: Create resource group to store state
+        run: az group create --name ${{ env.RESOURCE_GROUP_TFSTATE }} --location northeurope
+
+      - name: Create storage account to store state
+        run: az storage account create --resource-group ${{ env.RESOURCE_GROUP_TFSTATE }} --name ${{ env.STORAGE_ACCOUNT_TFSTATE }} --sku Standard_LRS --encryption-services blob --allow-blob-public-access false --min-tls-version TLS1_2
+
+      - name: Create container to store state
+        run: az storage container create --name ${{ env.CONTAINER_TFSTATE }} --account-name ${{ env.STORAGE_ACCOUNT_TFSTATE }} --account-key "$(az storage account keys list --resource-group ${{ env.RESOURCE_GROUP_TFSTATE }} --account-name  ${{ env.STORAGE_ACCOUNT_TFSTATE }} --query '[0].value' -o tsv)"
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Terraform Init
+        run: |
+          terraform init -backend-config="storage_account_name=${{ env.STORAGE_ACCOUNT_TFSTATE }}" \
+            -backend-config="container_name=${{ env.CONTAINER_TFSTATE }}" \
+            -backend-config="access_key=$(az storage account keys list --resource-group ${{ env.RESOURCE_GROUP_TFSTATE }} --account-name ${{ env.STORAGE_ACCOUNT_TFSTATE }} --query '[0].value' -o tsv)" \
+            -backend-config="key=${{ env.BLOB_TFSTATE }}"
+        working-directory: terraform
+
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: terraform
+
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: terraform
+
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
+        working-directory: terraform
+
+      - name: Terraform Output
+        id: terraform_output
+        run: echo "key_vault_name=$(terraform output -raw key_vault_name)" >> $GITHUB_OUTPUT
+        working-directory: terraform
+
+      # - name: Set secrets
+      #   run: az keyvault secret set --name SuperSecret --vault-name ${{ steps.terraform_output.outputs.key_vault_name }}  --value ${{ secrets.SUPER_SECRET }}
+
+
+
