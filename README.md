@@ -27,7 +27,7 @@ git checkout -b name-of-your-branch
   BLOB_TFSTATE: name-of-your-blob-containing-tfstate
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform
+  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
   TF_VAR_secret_value: your-super-secret-value
   TF_VAR_location: northeurope ##Does not need to be changed
 ```

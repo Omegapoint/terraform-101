@@ -2,21 +2,21 @@ name: MAIN PIPELINE
 
 on:
   push:
-    branches: [linnea-test]
+    branches: [main]
 
   workflow_dispatch:
 
 env:
 ######## Resources for saving tfstate
-  RESOURCE_GROUP_TFSTATE: linnea-test-tfstate-rg
-  STORAGE_ACCOUNT_TFSTATE: linneatesttfstate ##Can only be lower case letter and numbers, 3-24 chars
-  CONTAINER_TFSTATE: linneatesttfstate
-  BLOB_TFSTATE: linneatesttfstate
+  RESOURCE_GROUP_TFSTATE: name-of-your-resource-group-containing-tfstate
+  STORAGE_ACCOUNT_TFSTATE: name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: name-of-your-container-containing-tfstate
+  BLOB_TFSTATE: name-of-your-blob-containing-tfstate
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: linnea-terraform-rg ##Can only be letters, numbers, dashes, 3-21 chars
-  TF_VAR_secret_value: hemlis
-  TF_VAR_location: northeurope
+  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_secret_value: your-super-secret-value
+  TF_VAR_location: northeurope ##Does not need to be changed
 
 ######## ARM_ specific naming is needed for TF authentication
   ARM_CLIENT_ID: '0d52735b-9f94-4116-ba52-7f812490d7af'
