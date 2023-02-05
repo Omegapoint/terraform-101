@@ -10,6 +10,40 @@
 
 ## Deploya från pipeline
 
+1. Skapa en branch från main med ett unik namn
 
+```bash
+git checkout -b name-of-your-branch
+```
 
-* Update workflow main.yml on row 5 to trigger on push to your branch
+2. Öppna filen **.github/workflows/main.yml**
+3. Ändra environment variblerna, . **Välj något unik som du kommer ihåg!** 
+
+```bash
+######## Resources for saving tfstate
+  RESOURCE_GROUP_TFSTATE: name-of-your-resource-group-containing-tfstate
+  STORAGE_ACCOUNT_TFSTATE: name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: name-of-your-container-containing-tfstate
+  BLOB_TFSTATE: name-of-your-blob-containing-tfstate
+
+######## TF_VAR_ specific naming is needed for variables used in Terraform files
+  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform
+  TF_VAR_secret_value: your-super-secret-value
+  TF_VAR_location: northeurope ##Does not need to be changed
+````
+
+4. Ändra så workflowt triggas på din branch iställt för main
+
+````bash
+on:
+  push:
+    branches: [main]
+```
+
+5. Pusha dina ändringar till din branch.
+
+````bash
+git add .
+git commit -m "commit-message"
+git push
+```
