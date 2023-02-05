@@ -47,3 +47,5 @@ git add .
 git commit -m "commit-message"
 git push --set-upstream origin name-of-your-branch
 ```
+
+6. Gå till GitHub, kolla under taben **Actions**. Ett workflow ska ha triggats med ditt commit-meddelande. Klicka på körningen och kolla så att build-and-deploy jobbet går igenom.  
