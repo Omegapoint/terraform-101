@@ -63,8 +63,4 @@ resource "azurerm_key_vault_secret" "secret" {
   name         = "SuperSecret"
   value        = var.secret_value
   key_vault_id = azurerm_key_vault.key_vault.id
-
-  depends_on = [
-    azurerm_key_vault_access_policy.service_principal_policy
-  ]
 }

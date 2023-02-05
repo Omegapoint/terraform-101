@@ -17,7 +17,7 @@ git checkout -b name-of-your-branch
 ```
 
 2. Öppna filen **.github/workflows/main.yml**
-3. Ändra environment variblerna, . **Välj något unik som du kommer ihåg!** 
+3. Ändra environment variblerna. **Välj något unik som du kommer ihåg!** 
 
 ```bash
 ######## Resources for saving tfstate
