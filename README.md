@@ -45,5 +45,5 @@ on:
 ````bash
 git add .
 git commit -m "commit-message"
-git push
+git push --set-upstream origin name-of-your-branch
 ```

@@ -2,7 +2,7 @@ name: MAIN PIPELINE
 
 on:
   push:
-    branches: [main]
+    branches: [linnea-test]
 
   workflow_dispatch:
 
