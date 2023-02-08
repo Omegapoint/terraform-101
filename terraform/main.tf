@@ -52,11 +52,15 @@ resource "azurerm_role_assignment" "pipeline_to_keyvault" {
 resource "azurerm_role_assignment" "op_users_to_keyvault" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab"
+  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab" //add users to this ad group terraform101
 }
 
 resource "azurerm_key_vault_secret" "secret" {
   name         = "SuperSecret"
   value        = var.secret_value
   key_vault_id = azurerm_key_vault.key_vault.id
+
+  depends_on = [
+    azurerm_role_assignment.pipeline_to_keyvault
+  ]
 }

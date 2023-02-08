@@ -1,3 +1,5 @@
-push protection på main
+testa local deploy commandon genom att följa readme
+testa pipeline deploy genom att följa readme
 ta bort onödiga kommentarer
-renskriva 
+Se över powerpoint
+lägg in linkar till hashicorp

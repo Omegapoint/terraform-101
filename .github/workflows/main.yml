@@ -7,22 +7,24 @@ on:
   workflow_dispatch:
 
 env:
-  RESOURCE_GROUP_TFSTATE: terraform101
-  STORAGE_ACCOUNT_TFSTATE: terraform101
-  CONTAINER_TFSTATE: terraform101
-  BLOB_TFSTATE: terraform101
-  TF_VAR_project: terraform101
-  TF_VAR_location: northeurope
-  TF_VAR_secret_value: terraform101secret
+######## Resources for saving tfstate    
+  RESOURCE_GROUP_TFSTATE: name-of-your-resource-group-containing-tfstate
+  STORAGE_ACCOUNT_TFSTATE: name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: name-of-your-container-containing-tfstate
+  BLOB_TFSTATE: name-of-your-blob-containing-tfstate
 
-    ######## ARM_ specific naming is needed for TF authentication
+######## TF_VAR_ specific naming is needed for variables used in Terraform files
+  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_secret_value: your-super-secret-value
+  TF_VAR_location: northeurope ##Does not need to be changed
+
+######## ARM_ specific naming is needed for TF authentication
   ARM_CLIENT_ID: '0d52735b-9f94-4116-ba52-7f812490d7af'
   ARM_TENANT_ID: '3b68c6c1-04d4-4e86-875f-e48fa80b9529'
   ARM_SUBSCRIPTION_ID: 'd2245c54-7bbf-4a04-8b8c-e05622b29fc5'
   ARM_USE_OIDC: true
 
 jobs:
-  
   build-and-deploy:
     runs-on: ubuntu-latest
     environment: lab
@@ -78,9 +80,7 @@ jobs:
         id: terraform_output
         run: echo "key_vault_name=$(terraform output -raw key_vault_name)" >> $GITHUB_OUTPUT
         working-directory: terraform
-
+    
       # - name: Set secrets
       #   run: az keyvault secret set --name SuperSecret --vault-name ${{ steps.terraform_output.outputs.key_vault_name }}  --value ${{ secrets.SUPER_SECRET }}
-
-
 

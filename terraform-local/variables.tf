@@ -1,7 +1,7 @@
 variable "project" {
   type        = string
   description = "Name of project"
-  default     = "terraform101local"
+  default     = //namnge din resursgrupp till exepelvis somethingsomething-local
 }
 
 variable "location" {
