@@ -90,7 +90,7 @@ on:
 5. Pusha dina ändringar till din branch.
 
 ```bash
-git add .
+git add -A
 git commit -m "commit-message"
 git push --set-upstream origin name-of-your-branch
 ```
