@@ -23,16 +23,17 @@ cd terraform-local
 3.  validerar din syntax och formaterar https://developer.hashicorp.com/terraform/cli/commands/validate
 
 ```bash
-terraform validate
 terraform fmt
+terraform validate
 ```
 
-4. Uppdatera resursgruppsnamnet i terraform-local/variables.tf filen
+4. Uppdatera resursgruppsnamnet i terraform-local/variables.tf filen och verifiera igen med övre commandon (kommer ge fel, men att det är dags att gå vidare till nästa steg)
 
-5. Initializera terraform, kommer skapa configfiler mm, se https://developer.hashicorp.com/terraform/cli/commands/init
+5. Initializera terraform och validera, kommer skapa configfiler mm, se https://developer.hashicorp.com/terraform/cli/commands/init
 
 ```bash
 terraform init
+terraform validate
 ```
 
 6. Skapa en excekveringsplan som behövs för att sedan applicera eventuella ändringar på tidigare state https://developer.hashicorp.com/terraform/cli/commands/plan
@@ -42,6 +43,7 @@ terraform plan
 ```
 
 7. Applicera ändringarna (aka deploya). kräver manuellt ok steg om du inte lägger till --auto-approve
+7.1. Funkar det inte? kolla vad som har lyckats deployats. Kör `terraform apply` igen, se skillnaden på loggarna och fråga kompetenspassansvarig varför det inte funkade första gången
 
 ```bash
 terraform apply
@@ -52,8 +54,6 @@ terraform apply
 9. Inspektera statet du skapat lokalt
 
 10. Testa att ändra något och applicera ändringarna
-
-
 
 ## Deploya från pipeline
 
