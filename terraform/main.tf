@@ -49,10 +49,10 @@ resource "azurerm_role_assignment" "pipeline_to_keyvault" {
   principal_id         = data.azurerm_client_config.current.object_id
 }
 
-resource "azurerm_role_assignment" "op_users_to_keyvault" {
+resource "azurerm_role_assignment" "op_user_to_keyvault" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab" //add users to this ad group terraform101
+  principal_id         = //Fill in your object ID
 }
 
 resource "azurerm_key_vault_secret" "secret" {
