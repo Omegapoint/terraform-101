@@ -1,7 +1,7 @@
 variable "project" {
   type        = string
   description = "Name of project"
-  default     = //namnge din resursgrupp till exepelvis somethingsomething-local
+  default     = "jk-terraform-local"
 }
 
 variable "location" {
@@ -13,6 +13,6 @@ variable "location" {
 variable "secret_value" {
   type        = string
   sensitive   = true
-  default     = "secret"
+  default     = "omegasecretvalue"
   description = "Your super secret value"
 }
