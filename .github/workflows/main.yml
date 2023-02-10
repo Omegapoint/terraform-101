@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: rg-chris-tfstate
-  STORAGE_ACCOUNT_TFSTATE: chris-storage-tfstate ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: chrisstoragetfstate ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: chris-container-tfstate
   BLOB_TFSTATE: chris-blob-tfstate
 
