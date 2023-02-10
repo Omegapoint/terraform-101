@@ -7,7 +7,7 @@ terraform {
   }
 
 
-  backend "azurerm" {}
+  //backend "azurerm" {}
 }
 
 provider "azurerm" {
@@ -52,7 +52,7 @@ resource "azurerm_role_assignment" "pipeline_to_keyvault" {
 resource "azurerm_role_assignment" "op_user_to_keyvault" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = //Fill in your object ID
+  principal_id         = "43f1039a-630c-4208-a37c-cfa1047872ab"
 }
 
 resource "azurerm_key_vault_secret" "secret" {
