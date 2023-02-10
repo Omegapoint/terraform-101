@@ -1,7 +1,7 @@
 variable "project" {
   type        = string
   description = "Name of project"
-  default     = //namnge din resursgrupp till exepelvis somethingsomething-local
+  default     = "chris-terratest"
 }
 
 variable "location" {
@@ -14,5 +14,5 @@ variable "secret_value" {
   type        = string
   sensitive   = true
   default     = "secret"
-  description = "Your super secret value"
+  description = "väldigt hemligt att jag dricker öl"
 }
