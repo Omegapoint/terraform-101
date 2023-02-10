@@ -52,7 +52,7 @@ jobs:
         run: az storage container create --name ${{ env.CONTAINER_TFSTATE }} --account-name ${{ env.STORAGE_ACCOUNT_TFSTATE }} --account-key "$(az storage account keys list --resource-group ${{ env.RESOURCE_GROUP_TFSTATE }} --account-name  ${{ env.STORAGE_ACCOUNT_TFSTATE }} --query '[0].value' -o tsv)"
 
       - name: Setup Terraform
-        uses: 39e1cd80-4830-49e7-9928-8bb8701a354b
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_wrapper: false
 
