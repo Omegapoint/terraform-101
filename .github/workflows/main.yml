@@ -2,26 +2,26 @@ name: MAIN PIPELINE
 
 on:
   push:
-    branches: [main]
+    branches: [arvids-branch]
 
   workflow_dispatch:
 
 env:
-######## Resources for saving tfstate    
-  RESOURCE_GROUP_TFSTATE: name-of-your-resource-group-containing-tfstate
-  STORAGE_ACCOUNT_TFSTATE: name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: name-of-your-container-containing-tfstate
-  BLOB_TFSTATE: name-of-your-blob-containing-tfstate
+  ######## Resources for saving tfstate
+  RESOURCE_GROUP_TFSTATE: arvids-new-rg
+  STORAGE_ACCOUNT_TFSTATE: arvidssa ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: arvids-container
+  BLOB_TFSTATE: arvids-blob
 
-######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
-  TF_VAR_secret_value: your-super-secret-value
+  ######## TF_VAR_ specific naming is needed for variables used in Terraform files
+  TF_VAR_project: arvids-other-rg-id
+  TF_VAR_secret_value: shhitsasecret
   TF_VAR_location: northeurope ##Does not need to be changed
 
-######## ARM_ specific naming is needed for TF authentication
-  ARM_CLIENT_ID: '0d52735b-9f94-4116-ba52-7f812490d7af'
-  ARM_TENANT_ID: '3b68c6c1-04d4-4e86-875f-e48fa80b9529'
-  ARM_SUBSCRIPTION_ID: 'd2245c54-7bbf-4a04-8b8c-e05622b29fc5'
+  ######## ARM_ specific naming is needed for TF authentication
+  ARM_CLIENT_ID: "0d52735b-9f94-4116-ba52-7f812490d7af"
+  ARM_TENANT_ID: "3b68c6c1-04d4-4e86-875f-e48fa80b9529"
+  ARM_SUBSCRIPTION_ID: "d2245c54-7bbf-4a04-8b8c-e05622b29fc5"
   ARM_USE_OIDC: true
 
 jobs:
@@ -30,11 +30,11 @@ jobs:
     environment: lab
     permissions:
       id-token: write # This is required for requesting the JWT
-      contents: read  # This is required for actions/checkout
+      contents: read # This is required for actions/checkout
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v3
-      
+
       - name: Login to Azure
         uses: azure/login@v1
         with:
@@ -80,7 +80,6 @@ jobs:
         id: terraform_output
         run: echo "key_vault_name=$(terraform output -raw key_vault_name)" >> $GITHUB_OUTPUT
         working-directory: terraform
-    
+
       # - name: Set secrets
       #   run: az keyvault secret set --name SuperSecret --vault-name ${{ steps.terraform_output.outputs.key_vault_name }}  --value ${{ secrets.SUPER_SECRET }}
-

@@ -1,7 +1,7 @@
 variable "project" {
   type        = string
   description = "Name of project"
-  default     = //namnge din resursgrupp till exepelvis somethingsomething-local
+  default     = "arvids-new-rg-local" //namnge din resursgrupp till exepelvis somethingsomething-local
 }
 
 variable "location" {
