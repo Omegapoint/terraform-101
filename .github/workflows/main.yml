@@ -8,13 +8,13 @@ on:
 
 env:
 ######## Resources for saving tfstate    
-  RESOURCE_GROUP_TFSTATE: carina2-resource-group
-  STORAGE_ACCOUNT_TFSTATE: carina2-storage-account ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: carina2-container
-  BLOB_TFSTATE: carina2-blob
+  RESOURCE_GROUP_TFSTATE: car2-resource-group
+  STORAGE_ACCOUNT_TFSTATE: carinastorageaccount ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: carina-container
+  BLOB_TFSTATE: carina-blob
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: carina2-resource-group ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_project: car2-resource-group ##Can only be letters, numbers, dashes, 3-21 chars
   TF_VAR_secret_value: your-super-secret-value123
   TF_VAR_location: northeurope ##Does not need to be changed
 
