@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: niklas-test-rg
-  STORAGE_ACCOUNT_TFSTATE: niklasstorageaccount ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: niklasstorageaccount5 ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: niklas-container
   BLOB_TFSTATE: niklas-blob
 
