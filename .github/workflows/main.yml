@@ -9,8 +9,8 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: fredrik-rg-test
-  STORAGE_ACCOUNT_TFSTATE: fredrik-account-test ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: fredrik-tfstate-test
+  STORAGE_ACCOUNT_TFSTATE: fredrik-a-test ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: fredrik-s-test
   BLOB_TFSTATE: fredrik-blob-test
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
