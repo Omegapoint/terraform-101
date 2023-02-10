@@ -14,7 +14,7 @@ env:
   BLOB_TFSTATE: chris-blob-tfstate
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: rg-chris-kompetens-terraform ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_project: chris-terra ##Can only be letters, numbers, dashes, 3-21 chars
   TF_VAR_secret_value: "ibland äter jag inte middag"
   TF_VAR_location: northeurope ##Does not need to be changed
 
