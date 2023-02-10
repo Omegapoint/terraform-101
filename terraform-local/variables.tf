@@ -1,13 +1,13 @@
 variable "project" {
   type        = string
   description = "Name of project"
-  default     = //namnge din resursgrupp till exepelvis somethingsomething-local
+  default     = "rawand-local"
 }
 
 variable "location" {
   type        = string
   description = "Region to deploy to"
-  default     = "northeurope"
+  default     = "northeurope" //westeurope doesn't work
 }
 
 variable "secret_value" {
