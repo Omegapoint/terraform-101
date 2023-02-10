@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: TErraform23Jonathan
-  STORAGE_ACCOUNT_TFSTATE: StorageJonathan2 ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: SJOnathan2 ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: JOnathan223
   BLOB_TFSTATE: JonathanBlob
 
