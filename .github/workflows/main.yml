@@ -10,7 +10,7 @@ env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: TErraform23Jonathan
   STORAGE_ACCOUNT_TFSTATE: jonathan2 ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: JOnathan223
+  CONTAINER_TFSTATE: jon123
   BLOB_TFSTATE: JonathanBlob
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
