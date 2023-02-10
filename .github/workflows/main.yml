@@ -8,13 +8,13 @@ on:
 
 env:
 ######## Resources for saving tfstate    
-  RESOURCE_GROUP_TFSTATE: rg-jk-terraform-tfstate
-  STORAGE_ACCOUNT_TFSTATE: sajkterraform-tfstate ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: container-jk-terraform-tfstate
-  BLOB_TFSTATE: blob-jk-terraform-tfstate
+  RESOURCE_GROUP_TFSTATE: rg-jk-terraform
+  STORAGE_ACCOUNT_TFSTATE: sajkterraform ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: container-jk-terraform
+  BLOB_TFSTATE: blob-jk-terraform
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: rg-jk-terraform ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_project: rg-jk-terraform-var ##Can only be letters, numbers, dashes, 3-21 chars
   TF_VAR_secret_value: thisissecret
   TF_VAR_location: northeurope ##Does not need to be changed
 
