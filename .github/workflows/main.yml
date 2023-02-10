@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: car2-resource-group
-  STORAGE_ACCOUNT_TFSTATE: carina  ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: jaskhasfk  ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: carina-container
   BLOB_TFSTATE: carina-blob
 
