@@ -14,7 +14,7 @@ env:
   BLOB_TFSTATE: fredrik-blob-test
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: fredrik-proj-test ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_project: fredrik-bla-test ##Can only be letters, numbers, dashes, 3-21 chars
   TF_VAR_secret_value: fredrik-super-secret
   TF_VAR_location: northeurope ##Does not need to be changed
 
