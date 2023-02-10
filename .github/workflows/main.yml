@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: fornius-resource-group-containing-tfstate
-  STORAGE_ACCOUNT_TFSTATE: fornius-storage-account-containing-tfstate ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: forniusstorageaccount ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: fornius-container-containing-tfstate
   BLOB_TFSTATE: fornius-blob-containing-tfstate
 
