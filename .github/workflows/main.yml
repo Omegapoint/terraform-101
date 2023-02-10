@@ -9,7 +9,7 @@ on:
 env:
 ######## Resources for saving tfstate    
   RESOURCE_GROUP_TFSTATE: rg-hugo-tfstate
-  STORAGE_ACCOUNT_TFSTATE: hugostorage ##Can only be lower case letter and numbers
+  STORAGE_ACCOUNT_TFSTATE: hugostoqrage ##Can only be lower case letter and numbers
   CONTAINER_TFSTATE: hugo-container
   BLOB_TFSTATE: hugo-blob
 
