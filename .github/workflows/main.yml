@@ -2,20 +2,20 @@ name: MAIN PIPELINE
 
 on:
   push:
-    branches: [main]
+    branches: [linnea]
 
   workflow_dispatch:
 
 env:
 ######## Resources for saving tfstate    
-  RESOURCE_GROUP_TFSTATE: name-of-your-resource-group-containing-tfstate
-  STORAGE_ACCOUNT_TFSTATE: name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
-  CONTAINER_TFSTATE: name-of-your-container-containing-tfstate
-  BLOB_TFSTATE: name-of-your-blob-containing-tfstate
+  RESOURCE_GROUP_TFSTATE: "linnea-rg-tfstate" #name-of-your-resource-group-containing-tfstate
+  STORAGE_ACCOUNT_TFSTATE: "linneasatfstate" #name-of-your-storage-account-containing-tfstate ##Can only be lower case letter and numbers
+  CONTAINER_TFSTATE: "linneacatfstate" #name-of-your-container-containing-tfstate
+  BLOB_TFSTATE: "linneablobtfstate" #name-of-your-blob-containing-tfstate
 
 ######## TF_VAR_ specific naming is needed for variables used in Terraform files
-  TF_VAR_project: name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
-  TF_VAR_secret_value: your-super-secret-value
+  TF_VAR_project: "linneatest" #name-of-your-resource-group-containing-resources-deployed-using-terraform ##Can only be letters, numbers, dashes, 3-21 chars
+  TF_VAR_secret_value: "super secret" #your-super-secret-value
   TF_VAR_location: northeurope ##Does not need to be changed
 
 ######## ARM_ specific naming is needed for TF authentication

@@ -87,7 +87,15 @@ on:
     branches: [main]
 ```
 
-5. Pusha dina ändringar till din branch.
+5. Gå till [Azure](https://portal.azure.com/#home)
+
+6. Gå in på Azure Active Directory (du kan söka i sökfältet)
+
+7. Sök efter dig själv och kopiera ditt **Object ID**
+
+8. Klistra in ditt Object ID som en string i **terraform/main.tf** på rad 55. - Detta gör så att du får en roll i key vaultet och kan se, modifiera och ta bort din secret. Du kan även lägga upp nya secrets.
+
+9. Pusha dina ändringar till din branch.
 
 ```bash
 git add -A
@@ -95,13 +103,13 @@ git commit -m "commit-message"
 git push --set-upstream origin name-of-your-branch
 ```
 
-6. Gå till GitHub, kolla under taben **Actions**. Ett workflow ska ha triggats med ditt commit-meddelande. Klicka på körningen och kolla så att build-and-deploy jobbet går igenom. (Om körningen inte går igenom pga. "If role assignments, deny assignments or role definitions were changed recently, please observe propagation time" kör om workflowt)
+10. Gå till GitHub, kolla under taben **Actions**. Ett workflow ska ha triggats med ditt commit-meddelande. Klicka på körningen och kolla så att build-and-deploy jobbet går igenom. (Om körningen inte går igenom pga. "If role assignments, deny assignments or role definitions were changed recently, please observe propagation time" kör om workflowt)
 
-7. Gå till din resursgrupp i Azure och kolla så det finns ett key vault med din secret där.
+11. Gå till din resursgrupp i Azure och kolla så det finns ett key vault med din secret där.
 
-8. Gå till resursgruppen som innehåller ditt tfstate. Klicka på storage accounten, sen containers. Ladda ner din blob och inspektera tfstatet. Hittar du något intressant?
+12. Gå till resursgruppen som innehåller ditt tfstate. Klicka på storage accounten, sen containers. Ladda ner din blob och inspektera tfstatet. Hittar du något intressant?
 
-9. Ta bort dina resursgrupper om du inte vill fortsätta labba. Om du inte har permissions att plocka bort något, säg till så fixar vi!
+13. Ta bort dina resursgrupper om du inte vill fortsätta labba. Om du inte har permissions att plocka bort något, säg till så fixar vi!
 
 ## Known issues
 
