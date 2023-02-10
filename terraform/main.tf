@@ -52,7 +52,7 @@ resource "azurerm_role_assignment" "pipeline_to_keyvault" {
 resource "azurerm_role_assignment" "op_users_to_keyvault" {
   scope                = azurerm_key_vault.key_vault.id
   role_definition_name = "Key Vault Secrets Officer"
-  principal_id         = "24374a4d-02b0-4527-b03a-08266f8e4de0" //Fill in your object ID
+  principal_id         = //Fill in your object ID
 }
 
 resource "azurerm_key_vault_secret" "secret" {
